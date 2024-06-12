@@ -7,7 +7,7 @@ import java.awt.*;
 
 
 public abstract class Shape {
-    private static Color RECT_PLAYING_COLOR;
+    protected static Color RECT_PLAYING_COLOR;
     protected static Color OVAL_PLAYING_COLOR;
 
     protected int x;
@@ -17,8 +17,9 @@ public abstract class Shape {
 
     protected boolean selected;
 
-    private MidiSynth midiSynth;
-    private int instrument;
+    protected MidiSynth midiSynth;
+    protected int instrument;
+    protected int instrument2;
     protected int playLineCoord;
 
 
@@ -27,6 +28,7 @@ public abstract class Shape {
         selected = false;
         this.midiSynth = midiSynth;
         instrument = 0;
+        instrument2 = 60;
         playLineCoord = 0;
         RECT_PLAYING_COLOR = new Color(230, 158, 60);
         OVAL_PLAYING_COLOR = new Color(0,255,255);
@@ -142,7 +144,7 @@ public abstract class Shape {
 
 
     // EFFECTS: starts playing this Shape, where sound is dependent on the area/coordinates of the Shape
-    private void play(){
+    protected void play(){
         int volume = areaToVelocity(width * height);
         midiSynth.play(instrument, coordToNote(y), volume);
     }
@@ -155,12 +157,12 @@ public abstract class Shape {
     // EFFECTS: return a velocity based on the area of a Shape
     //          The only meaningful velocities are between 0 and 127
     //          Velocities less than 60 are too quiet to be heard
-    private int areaToVelocity(int area) {
+    protected int areaToVelocity(int area) {
         return Math.max(60, Math.min(127, area / 30));
     }
 
     // EFFECTS: maps a given integer to a valid associated note
-    private int coordToNote(int y) {
+    protected int coordToNote(int y) {
         return 70 - y / 12;
     }
 }

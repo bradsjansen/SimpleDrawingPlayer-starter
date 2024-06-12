@@ -24,4 +24,9 @@ public class Rectangle extends Shape{
     protected void fillGraphics(Graphics g) {
         g.fillRect(x, y, width, height);
     }
+    @Override
+    protected void play(){
+        int volume = areaToVelocity(width * height);
+        midiSynth.play(instrument, coordToNote(y), volume);
+    }
 }

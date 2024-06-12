@@ -24,6 +24,11 @@ public class Oval extends Shape{
     protected void fillGraphics(Graphics g) {
         g.fillOval(x, y, width, height);
     }
+    @Override
+    protected void play(){
+        int volume = areaToVelocity(width * height);
+        midiSynth.play(instrument2, coordToNote(y), volume);
+    }
 
     // EFFECTS: return true if this Oval contains the given point p, else return false
     @Override
