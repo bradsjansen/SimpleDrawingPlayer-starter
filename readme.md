@@ -1,3 +1,16 @@
-## Are you having configuration troubles?
+## Task :
+Add an additional tool (and all its underlying functionality) to make an Oval tool that plays a different sound!
+## Steps:
+1. Add a button to the tool bar, by examining how it's currently done for all the other buttons, and then duplicating that functionality.
+2. Add a tool class that implements the new button by looking at how the ShapeTool class works
+3. Add a class that implements the new shape by looking at how the Shape class works
+   
+UML Diagram At starting point :
+![image](https://github.com/bradsjansen/SimpleDrawingPlayer-starter/assets/113173037/edc8c670-ea78-4ea0-8532-2a106893aa4b)
 
-Please go to [this link](https://github.com/UBCx-Software-Construction/intro-to-softconst-lecture-starters/blob/master/README.md) to try to sort the problem out. If all else fails, feel free to post about it on the discussion board: remember to indicate what repo you're having the problem in, and what exactly is going wrong. 
+
+UML After :
+UML
+
+APP UI:
+UI
