@@ -6,19 +6,20 @@ import sound.MidiSynth;
 import java.awt.*;
 
 
-public class Shape {
-    private static Color PLAYING_COLOR;
+public abstract class Shape {
+    private static Color RECT_PLAYING_COLOR;
+    protected static Color OVAL_PLAYING_COLOR;
 
-    private int x;
-    private int y;
-    private int width;
-    private int height;
+    protected int x;
+    protected int y;
+    protected int width;
+    protected int height;
 
-    private boolean selected;
+    protected boolean selected;
 
     private MidiSynth midiSynth;
     private int instrument;
-    private int playLineCoord;
+    protected int playLineCoord;
 
 
     public Shape(Point topLeft, MidiSynth midiSynth) {
@@ -27,7 +28,8 @@ public class Shape {
         this.midiSynth = midiSynth;
         instrument = 0;
         playLineCoord = 0;
-        PLAYING_COLOR = new Color(230, 158, 60);
+        RECT_PLAYING_COLOR = new Color(230, 158, 60);
+        OVAL_PLAYING_COLOR = new Color(0,255,255);
     }
 
 
@@ -77,7 +79,7 @@ public class Shape {
     public void draw(Graphics g) {
         Color save = g.getColor();
         if (selected) {
-            g.setColor(PLAYING_COLOR);
+            g.setColor(RECT_PLAYING_COLOR);
         } else {
             g.setColor(Color.white);
         }
@@ -129,12 +131,12 @@ public class Shape {
     }
 
     //EFFECTS: draws the shape
-    private void drawGraphics(Graphics g) {
+    protected void drawGraphics(Graphics g) {
         g.drawRect(x, y, width, height);
     }
 
     //EFFECTS: fills the shape
-    private void fillGraphics(Graphics g) {
+    protected void fillGraphics(Graphics g) {
         g.fillRect(x, y, width, height);
     }
 

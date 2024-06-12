@@ -1,6 +1,8 @@
 package ui.tools;
 
 
+import model.Oval;
+import model.Rectangle;
 import model.Shape;
 import ui.DrawingEditor;
 
@@ -9,8 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 
-public class ShapeTool extends Tool {
-	private Shape shape;
+public abstract class ShapeTool extends Tool {
+	protected Shape shape;
 
     public ShapeTool(DrawingEditor editor, JComponent parent) {
 		super(editor, parent);
@@ -20,10 +22,7 @@ public class ShapeTool extends Tool {
     // MODIFIES: this
     // EFFECTS:  creates new button and adds to parent
 	@Override
-	protected void createButton(JComponent parent) {
-		button = new JButton(getLabel());
-		button = customizeButton(button);
-	}
+	protected abstract void createButton(JComponent parent);
 
     // MODIFIES: this
     // EFFECTS:  associate button with new ClickHandler
@@ -60,14 +59,10 @@ public class ShapeTool extends Tool {
 	}
 
 	//EFFECTS: Returns the string for the label.
-	private String getLabel() {
-		return "Shape";
-	}
+	protected abstract String getLabel();
 
 	//EFFECTS: Constructs and returns the new shape
-	private void makeShape(MouseEvent e) {
-		shape = new Shape(e.getPoint(), editor.getMidiSynth());
-	}
+	protected abstract void makeShape(MouseEvent e);
 
 	private class ShapeToolClickHandler implements ActionListener {
 
